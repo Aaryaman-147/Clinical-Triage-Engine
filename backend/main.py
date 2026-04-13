@@ -10,9 +10,6 @@ from dotenv import load_dotenv
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
-from langchain_core.documents import Document
 
 load_dotenv()
 
@@ -26,7 +23,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 ALLOWED_ORIGINS = [
     "http://localhost:3000", 
-    "https://healthassist-ai.vercel.app" 
+    "https://your-app-name.vercel.app" 
 ]
 
 app.add_middleware(
@@ -40,14 +37,15 @@ app.add_middleware(
 # ==========================================
 # 2. RAG KNOWLEDGE BASE
 # ==========================================
-medical_protocols = [
-    Document(page_content="APPENDICITIS PROTOCOL: Symptoms include sharp pain in the lower right abdomen. Next steps MUST include: Go to the ER for an ultrasound, do not eat or drink anything (NPO).", metadata={"topic": "Appendicitis"}),
-    Document(page_content="MIGRAINE PROTOCOL: Characterized by throbbing pain on one side of the head. Next steps: Rest in a dark room, stay hydrated.", metadata={"topic": "Migraine"})
-]
-
-print("Initializing RAG Vector Database...")
-embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-vector_db = Chroma.from_documents(medical_protocols, embeddings)
+def get_medical_protocol(user_text: str) -> str:
+    text = user_text.lower()
+    if "appendicitis" in text or "abdomen" in text or "stomach" in text:
+        return "APPENDICITIS PROTOCOL: Symptoms include sharp pain in the lower right abdomen. Next steps MUST include: Go to the ER for an ultrasound, do not eat or drink anything (NPO)."
+    elif "migraine" in text or "headache" in text or "head" in text:
+        return "MIGRAINE PROTOCOL: Characterized by throbbing pain on one side of the head. Next steps: Rest in a dark room, stay hydrated."
+    elif "burn" in text or "hot" in text or "fire" in text:
+        return "BURN PROTOCOL: Run cool water over the burn. Cover with a clean bandage. Seek medical attention if blistering occurs."
+    return "No specific clinical protocol found. Rely on general triage knowledge."
 print("Engine Fully Online & Secured!")
 
 # ==========================================
@@ -83,12 +81,7 @@ async def chat_endpoint(request: Request, req: ChatRequest):
          raise HTTPException(status_code=400, detail="Empty message received.")
 
     # RAG Search
-    try:
-        docs = vector_db.similarity_search(latest_msg, k=1)
-        retrieved_context = docs[0].page_content if docs else "No specific protocol found."
-    except Exception as e:
-        print(f"RAG Error: {e}")
-        retrieved_context = "No specific protocol found due to search error."
+    retrieved_context = get_medical_protocol(latest_msg)
 
     # THE SEMANTIC GUARDRAIL (Updated for Natural UX)
     system_instruction = f"""
