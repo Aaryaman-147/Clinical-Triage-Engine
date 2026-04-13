@@ -52,17 +52,19 @@ Input:
 "I’ve had sharp lower back pain for 3 days"
 
 Output:
-Risk Level: Medium  
+Risk Level: Moderate  
 Confidence: High  
+Clinical Risk Score: 45/100
 
-Possible Conditions:
-- Musculoskeletal strain  
-- Nerve irritation  
+Follow-up needed: None
+
+Identified Risks:
+Musculoskeletal, Renal
 
 Recommended Actions:
-- Apply heat  
-- Monitor symptoms  
-- Consult a doctor if persistent  
+- Monitor the pain and any accompanying symptoms  
+- Stay hydrated and avoid activities that exacerbate the pain  
+- Seek medical evaluation if the pain persists beyond a few more days or worsens  
 
 ⚠️ Disclaimer: Not a medical diagnosis
  
