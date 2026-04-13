@@ -1,6 +1,14 @@
 # HealthAssist AI 🩺
 
-A production-grade, full-stack clinical triage platform designed to assess medical symptoms, provide risk scoring, and enforce strict medical guardrails using Retrieval-Augmented Generation (RAG).
+A full-stack AI system for symptom-based risk assessment, combining large language models with retrieval-augmented knowledge grounding and safety guardrails to produce structured, explainable outputs.
+
+## 🧠 Overview
+
+This project explores how AI can support early-stage health risk understanding in a responsible and structured manner.
+
+It integrates LLM reasoning with retrieval-based grounding and system-level safeguards to reduce hallucination and ensure outputs remain within a controlled medical scope.
+
+
 
 ## 🏗️ Architecture
 
