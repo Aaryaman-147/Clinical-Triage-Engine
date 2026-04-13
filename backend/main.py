@@ -26,7 +26,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 ALLOWED_ORIGINS = [
     "http://localhost:3000", 
-    "https://your-app-name.vercel.app" 
+    "https://healthassist-ai.vercel.app" 
 ]
 
 app.add_middleware(
