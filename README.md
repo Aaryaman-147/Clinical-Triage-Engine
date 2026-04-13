@@ -31,7 +31,22 @@ This project is split into a modern web frontend and a highly resilient, Python-
   - Ensures robustness under API rate limits and outages
 ## ✨ Key Features
 
-* **Semantic Guardrails:** Actively blocks non-medical prompts (e.g., coding requests, casual chat) and forces the AI to stay in character.
-* **Unkillable Waterfall Routing:** Automatically catches `429` and `503` errors from overloaded AI APIs and seamlessly routes the request to backup models with zero frontend downtime.
-* **Rate Limiting & Security:** Integrated `slowapi` to prevent bot spam and strict CORS configurations.
-* **Dynamic UI Rendering:** Intelligently switches between a friendly conversational chat bubble for greetings and a full Clinical Risk Scorecard for symptom triage.
+* **🧠 Structured Risk Assessment:**
+  - Risk levels (Low / Medium / High)
+  - Confidence estimation
+  - Suggested next steps
+  - Explainability layer
+* **🛡️ Safety & Guardrails:**
+  - Restricts non-medical or out-of-scope queries
+  - Enforces structured, clinical-style outputs
+  - Includes emergency escalation logic
+* **🔄 Fault-Tolerant AI Routing:**
+  - Detects API failures (e.g., rate limits, downtime)
+  - Automatically switches to backup models
+  - Maintains consistent user experience
+ 
+## 🔮 Future Work
+
+* Multilingual support for broader accessibility
+* Voice-based input for low-resource settings
+* Integration with validated medical datasets
