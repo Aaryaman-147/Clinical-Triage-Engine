@@ -71,3 +71,10 @@ Recommended Actions:
 * Multilingual support for broader accessibility
 * Voice-based input for low-resource settings
 * Integration with validated medical datasets
+
+## ⚠️ Limitations
+
+- Not clinically validated or approved for medical use  
+- Relies on LLM reasoning, which may produce incorrect or incomplete outputs  
+- Knowledge base is limited to curated sources and not exhaustive  
+- Does not replace professional medical advice  
