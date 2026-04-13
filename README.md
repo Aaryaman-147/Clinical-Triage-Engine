@@ -52,6 +52,7 @@ Input:
 "I’ve had sharp lower back pain for 3 days"
 
 Output:
+
 Risk Level: Moderate  
 Confidence: High  
 Clinical Risk Score: 45/100
