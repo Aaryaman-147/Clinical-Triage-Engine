@@ -42,6 +42,7 @@ This project is split into a modern web frontend and a highly resilient, Python-
   - Includes emergency escalation logic
 * **🔄 Fault-Tolerant AI Routing:**
   - Detects API failures (e.g., rate limits, downtime)
+  - Integrated `slowapi` to prevent bot spam and strict CORS configurations.
   - Automatically switches to backup models
   - Maintains consistent user experience
  
